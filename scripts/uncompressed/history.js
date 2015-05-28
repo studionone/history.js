@@ -23,8 +23,14 @@
 		clearInterval = window.clearInterval,
 		JSON = window.JSON,
 		alert = window.alert,
-		History = window.History = window.History||{}, // Public History Object
+		History,
 		history = window.history; // Old History Object
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = History = {};
+	} else {
+		History = window.History = window.History || {};
+	}
 
 	try {
 		sessionStorage = window.sessionStorage; // This will throw an exception in some browsers when cookies/localStorage are explicitly disabled (i.e. Chrome)
@@ -590,7 +596,7 @@
 
 			if (doc.URL.indexOf('#') == -1 && doc.location.href.indexOf('#') != -1)
 				return doc.location.href;
-			
+
 			return doc.URL || doc.location.href;
 		};
 
@@ -901,7 +907,7 @@
 			var id,parts,url, tmp;
 
 			// Extract
-			
+
 			// If the URL has a #, use the id from before the #
 			if (url_or_hash.indexOf('#') != -1)
 			{
@@ -911,7 +917,7 @@
 			{
 				tmp = url_or_hash;
 			}
-			
+
 			parts = /(.*)\&_suid=([0-9]+)$/.exec(tmp);
 			url = parts ? (parts[1]||url_or_hash) : url_or_hash;
 			id = parts ? String(parts[2]||'') : '';
@@ -1111,7 +1117,7 @@
 			// Return State
 			return State;
 		};
-		
+
 		/**
 		 * History.getCurrentIndex()
 		 * Gets the current index
@@ -1120,7 +1126,7 @@
 		History.getCurrentIndex = function(){
 			// Prepare
 			var index = null;
-			
+
 			// No states saved
 			if(History.savedStates.length < 1) {
 				index = 0;
