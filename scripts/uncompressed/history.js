@@ -5,32 +5,24 @@
  * @license New BSD License <http://creativecommons.org/licenses/BSD/>
  */
 
-(function(window,undefined){
-	"use strict";
+// ========================================================================
+// Initialise
+//
+var console,
+	document,
+	navigator,
+	history,
+	sessionStorage = false,
+	alert,
+	History = module.exports = {};
 
-	// ========================================================================
-	// Initialise
-
+if (typeof window !== 'undefined') {
 	// Localise Globals
-	var
-		console = window.console||undefined, // Prevent a JSLint complain
-		document = window.document, // Make sure we are using the correct document
-		navigator = window.navigator, // Make sure we are using the correct navigator
-		sessionStorage = false, // sessionStorage
-		setTimeout = window.setTimeout,
-		clearTimeout = window.clearTimeout,
-		setInterval = window.setInterval,
-		clearInterval = window.clearInterval,
-		JSON = window.JSON,
-		alert = window.alert,
-		History,
-		history = window.history; // Old History Object
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = History = {};
-	} else {
-		History = window.History = window.History || {};
-	}
+	console = require('console');// Prevent a JSLint complain
+	document = window.document; // Make sure we are using the correct document
+	navigator = window.navigator; // Make sure we are using the correct navigator
+	alert = window.alert;
+	history = window.history; // Old History Object
 
 	try {
 		sessionStorage = window.sessionStorage; // This will throw an exception in some browsers when cookies/localStorage are explicitly disabled (i.e. Chrome)
@@ -2047,5 +2039,4 @@
 	if (!History.options || !History.options.delayInit) {
 		History.init();
 	}
-
-})(window);
+}

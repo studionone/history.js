@@ -3,7 +3,7 @@
 	"version": "1.8.0",
 	"description": "History.js fork to handle CommonJS correctly",
 	"homepage": "https://github.com/browserstate/history.js",
-	"main": "uncompressed/history.js",
+	"main": "scripts/uncompressed/history.js",
 	"keywords": [
 		"javascript",
 		"html5 history api",
